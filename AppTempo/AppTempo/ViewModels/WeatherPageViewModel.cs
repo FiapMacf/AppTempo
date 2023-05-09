@@ -4,6 +4,7 @@ using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Text;
 using Xamarin.Forms;
 
@@ -14,8 +15,26 @@ namespace AppTempo.ViewModels
         public ObservableCollection<City> Cities { get; set; }
         public ObservableCollection<WeatherSchedule> WeatherSchedule { get; set; }
         public ObservableCollection<WeatherSchedule> WeatherScheduleIcon { get; set; }
+        public City City { get; set; }
+        CultureInfo cultureBR = new CultureInfo("pt-BR");
         public WeatherPageViewModel()
         {
+            //TimeZoneInfo tz = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
+            //DateTime date = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, tz);
+            DateTime date = DateTime.Now;
+            City =
+            new City
+            {
+                Id = 1,
+                Name = "Naples",
+                Temparute = "22°",
+                Time = "11:25",
+                Icon = MaterialDesignIcons.WeatherPouring,
+                IconColor = Color.FromHex("#773ad8"),
+                Day = date.Day.ToString(),
+                DayWeek = cultureBR.DateTimeFormat.GetAbbreviatedDayName(date.DayOfWeek),
+            };
+
             Cities = new ObservableCollection<City>
             {
                 new City
