@@ -4,7 +4,8 @@ using System.Text;
 
 namespace AppTempo.Models
 {
-    internal class Rain
+    public class Rain
     {
+        public double OneHour { get; set; }
     }
 }
