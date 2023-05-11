@@ -188,7 +188,7 @@
                                               VerticalOptions="CenterAndExpand"
                                               FontSize="Title">
                             </Label>
-                            <Label Text="Temperaturas do Dia"
+                            <Label Text="Informações do Dia"
                                                VerticalOptions="CenterAndExpand"
                                                FontSize="Large">
 
@@ -197,26 +197,7 @@
                                 <TapGestureRecognizer Tapped="OnTodayDetailTapped" />
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
-                        <Button Text="{x:Static utils:MaterialDesignIcons.HomeVariantOutline}"
-                                            Style="{StaticResource menuButtonStyle}"
-                                            x:Name="homeIcon"
-                                            Grid.Column="0"
-                                            HorizontalOptions="StartAndExpand"
-                                            Opacity="0"/>
-                        <Button Text="{x:Static utils:MaterialDesignIcons.Plus}"
-                                            HorizontalOptions="CenterAndExpand"
-                                            Scale="0"
-                                            Grid.Column="1"
-                                            x:Name="plusIcon"
-                                            Style="{StaticResource menuButtonStyle}"
-                                            BackgroundColor="{StaticResource secondaryColor}"
-                                            TextColor="White"/>
-                        <Button Text="{x:Static utils:MaterialDesignIcons.CalendarBlankOutline}"
-                                            HorizontalOptions="EndAndExpand"
-                                            Grid.Column="2"
-                                            Style="{StaticResource menuButtonStyle}"
-                                            x:Name="citiesDetailBtn"
-                                            Clicked="OnWeekyDetailTapped" />
+
                         <controls:TodayChangesSection Grid.Row="1"
                                                                   Grid.ColumnSpan="3"
                                                                   x:Name="todayChangesSection" />

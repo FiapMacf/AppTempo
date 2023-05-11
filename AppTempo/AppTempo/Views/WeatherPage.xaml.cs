@@ -58,9 +58,7 @@ namespace AppTempo.Views
 
                 if (section == "today")
                 {
-                    citiesDetailBtn.FadeTo(1, 200, Easing.Linear);
 
-                    temperatureSubTitle.FadeTo(1, 200, Easing.Linear);
                     parentAnimation.Add(0, 1, new Animation(v => temperatureTitle.FontSize = v, 40, 65, Easing.SpringOut));
                     parentAnimation.Add(0, 1, new Animation(v => temperatureTitle.TranslationX = v, temperatureTitle.TranslationX, 0, Easing.SpringOut));
                     parentAnimation.Add(0, 1, new Animation(v => temperatureIcon.FontSize = v, 40, Device.GetNamedSize(NamedSize.Title, typeof(Label)), Easing.CubicInOut));
@@ -72,10 +70,6 @@ namespace AppTempo.Views
                     todayDetailBtn.FadeTo(1, 200, Easing.Linear);
                     sunSection.FadeTo(0, 200, Easing.Linear);
 
-                    parentAnimation.Add(0, 1, new Animation(v => plusIcon.Scale = homeIcon.Opacity = v, 1, 0, Easing.SpringIn, () => {
-                        todayDetailBtn.IsVisible = true;
-                        todayDetailBtn.FadeTo(1, 200, Easing.Linear);
-                    }));
                 }
             }
             else
@@ -94,10 +88,7 @@ namespace AppTempo.Views
 
                 if (section == "today")
                 {
-                    citiesDetailBtn.FadeTo(0, 200, Easing.SinIn);
 
-
-                    temperatureSubTitle.FadeTo(0, 200, Easing.SinIn);
                     parentAnimation.Add(0, 1, new Animation(v => temperatureTitle.FontSize = v, 65, 40, Easing.CubicInOut));
                     parentAnimation.Add(0, 1, new Animation(v => temperatureTitle.TranslationX = v, temperatureTitle.TranslationX, 50, Easing.CubicInOut));
 
@@ -110,8 +101,7 @@ namespace AppTempo.Views
                     sunSection.FadeTo(1, 200, Easing.Linear);
                     parentAnimation.Add(0, 1, new Animation(v => todayDetailBtn.Opacity = v, 1, 0, Easing.Linear, () => {
                         todayDetailBtn.IsVisible = false;
-                        homeIcon.FadeTo(1, 150, Easing.Linear);
-                        plusIcon.ScaleTo(1, 300, Easing.CubicInOut);
+                     
                     }));
                 }
 

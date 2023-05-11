@@ -19,8 +19,7 @@ namespace AppTempo.ViewModels
         CultureInfo cultureBR = new CultureInfo("pt-BR");
         public WeatherPageViewModel()
         {
-            //TimeZoneInfo tz = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
-            //DateTime date = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, tz);
+
             DateTime date = DateTime.Now;
             City =
             new City
