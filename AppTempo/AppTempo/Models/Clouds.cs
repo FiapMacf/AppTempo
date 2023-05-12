@@ -4,7 +4,8 @@ using System.Text;
 
 namespace AppTempo.Models
 {
-    internal class Clouds
+    public class Clouds
     {
+        public int All { get; set; }
     }
 }

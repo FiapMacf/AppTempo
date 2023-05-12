@@ -4,7 +4,10 @@ using System.Text;
 
 namespace AppTempo.Models
 {
-    internal class Wind
+    public class Wind
     {
+        public double Speed { get; set; }
+        public int Deg { get; set; }
+        public double Gust { get; set; }
     }
 }
