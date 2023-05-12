@@ -17,7 +17,6 @@ namespace AppTempo.Droid
         public override void OnCreate()
         {
             base.OnCreate();
-            Xamarin.Essentials.Platform.Init(this);
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace AppTempo.ViewModels
@@ -153,9 +154,13 @@ namespace AppTempo.ViewModels
         private async Task LoadWeatherDataAsync()
         {
             WeatherService weatherService = new WeatherService();
+            GeolocationService geolocationService = new GeolocationService();
 
-            double latitude = -23.000; // Replace with the desired latitude
-            double longitude = -46.000; // Replace with the desired longitude
+            Tuple<double, double> location = await geolocationService.GetLocation();
+
+            double latitude = location.Item1; // latitude value from the tuple
+            double longitude = location.Item2; // longitude value from the tuple
+
             Weather = await weatherService.GetWeatherAsync(latitude, longitude);
             // Handle the weather data as needed
         }
