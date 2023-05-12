@@ -1,4 +1,5 @@
 ﻿using AppTempo.Models;
+using AppTempo.Services;
 using AppTempo.Utils;
 using Prism.Mvvm;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AppTempo.ViewModels
@@ -15,14 +17,15 @@ namespace AppTempo.ViewModels
         public ObservableCollection<City> Cities { get; set; }
         public ObservableCollection<WeatherSchedule> WeatherSchedule { get; set; }
         public ObservableCollection<WeatherSchedule> WeatherScheduleIcon { get; set; }
-        public City City { get; set; }
+        public City City { get; set; }        
+        public WeatherData Weather { get; set; }
+        
         CultureInfo cultureBR = new CultureInfo("pt-BR");
         public WeatherPageViewModel()
         {
 
             DateTime date = DateTime.Now;
-            City =
-            new City
+            City = new City
             {
                 Id = 1,
                 Name = "Naples",
@@ -143,6 +146,18 @@ namespace AppTempo.ViewModels
                 }
             };
 
+
+            Task.Run(async () => await LoadWeatherDataAsync()).Wait();
+        }
+
+        private async Task LoadWeatherDataAsync()
+        {
+            WeatherService weatherService = new WeatherService();
+
+            double latitude = -23.000; // Replace with the desired latitude
+            double longitude = -46.000; // Replace with the desired longitude
+            Weather = await weatherService.GetWeatherAsync(latitude, longitude);
+            // Handle the weather data as needed
         }
     }
 }
