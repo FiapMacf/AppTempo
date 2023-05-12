@@ -22,7 +22,7 @@ namespace AppTempo.Services
 
         public async Task<WeatherData> GetWeatherAsync(double latitude, double longitude)
         {
-            string url = $"{BaseUrl}?lat={latitude}&lon={longitude}&appid={ApiKey}";
+            string url = $"{BaseUrl}?lat={latitude}&lon={longitude}&appid={ApiKey}&lang=pt_br";
 
             try
             {
