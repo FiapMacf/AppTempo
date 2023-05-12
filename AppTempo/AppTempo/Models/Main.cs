@@ -6,6 +6,7 @@ namespace AppTempo.Models
 {
     public class Main
     {
+        public int IdWeather { get; set; }
         public double Temp { get; set; }
         public double FeelsLike { get; set; }
         public double TempMin { get; set; }

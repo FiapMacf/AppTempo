@@ -5,6 +5,7 @@ using System.Text;
 namespace AppTempo.Models
 {    public class Sys
     {
+        public int IdWeather { get; set; }
         public int Type { get; set; }
         public int Id { get; set; }
         public string Country { get; set; }

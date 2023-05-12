@@ -1,7 +1,10 @@
+using AppTempo.Database;
 using AppTempo.ViewModels;
 using AppTempo.Views;
 using Prism;
 using Prism.Ioc;
+using System;
+using System.IO;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Essentials.Interfaces;
 using Xamarin.Forms;
@@ -19,6 +22,10 @@ namespace AppTempo
         protected override async void OnInitialized()
         {
             InitializeComponent();
+
+            string databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "appTempo.db");
+            var db = new DataBaseContext(databasePath);
+
 
             await NavigationService.NavigateAsync("NavigationPage/WeatherPage");
         }

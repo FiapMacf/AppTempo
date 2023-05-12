@@ -6,6 +6,7 @@ namespace AppTempo.Models
 {
     public class Clouds
     {
+        public int IdWeather { get; set; }
         public int All { get; set; }
     }
 }
