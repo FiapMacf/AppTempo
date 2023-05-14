@@ -4,6 +4,6 @@
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<application android:label="@string/app_name" android:icon="@drawable/icon"></application>
-	<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCW8wnFzjzQBnfPnktz4g-5AZFtEJb7xok" />
+	<meta-data android:name="com.google.android.geo.API_KEY" android:value="_KEY" />
 	<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 </manifest>
