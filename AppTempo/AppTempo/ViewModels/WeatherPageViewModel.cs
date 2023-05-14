@@ -1,4 +1,5 @@
 ﻿using AppTempo.Database;
+using AppTempo.Helper;
 using AppTempo.Models;
 using AppTempo.Services;
 using AppTempo.Utils;
@@ -58,6 +59,11 @@ namespace AppTempo.ViewModels
                 DayWeek = cultureBR.DateTimeFormat.GetAbbreviatedDayName(date.DayOfWeek),
 
             };
+            if (Weather.Sys != null)
+            {
+                Weather.Sys.SunriseDate = Conversor.convertTimestampToDate(Weather.Sys.Sunrise);
+                Weather.Sys.SunsetDate = Conversor.convertTimestampToDate(Weather.Sys.Sunset);
+            }
             Weather.City = CityAdress;
             _repository.InsertWeatherData(Weather);
         }

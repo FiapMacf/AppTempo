@@ -13,14 +13,14 @@
                                         HeightRequest="50"
                                         WidthRequest="50"
                                         CornerRadius="25">
-                    <Label Text="{x:Static utils:MaterialDesignIcons.WeatherPouring}"
+                    <Label Text="{x:Static utils:MaterialDesignIcons.WeatherSunsetUp}"
                                 FontFamily="{StaticResource MaterialFontFamily}"
                                 TextColor="{StaticResource primaryColor}"
                                 HorizontalOptions="CenterAndExpand"
                                 VerticalOptions="CenterAndExpand"
                                 FontSize="Title" />
                 </yummy:PancakeView>
-                <Label Text="Rain with short storms"
+                <Label Text="{Binding Weather.Sys.SunriseDate}"
                             HorizontalOptions="StartAndExpand"
                             VerticalOptions="CenterAndExpand"/>
 
@@ -29,14 +29,14 @@
                                         HeightRequest="50"
                                         WidthRequest="50"
                                         CornerRadius="25">
-                    <Label Text="{x:Static utils:MaterialDesignIcons.WeatherWindy}"
+                    <Label Text="{x:Static utils:MaterialDesignIcons.WeatherSunsetDown}"
                                 FontFamily="{StaticResource MaterialFontFamily}"
                                 TextColor="{StaticResource secondaryColor}"
                                 HorizontalOptions="CenterAndExpand"
                                 VerticalOptions="CenterAndExpand"
                                 FontSize="Title" />
                 </yummy:PancakeView>
-                <Label Text="Wind EN 8 km/h"
+                <Label Text="{Binding Weather.Sys.SunsetDate}"
                             VerticalOptions="CenterAndExpand"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal"

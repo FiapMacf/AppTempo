@@ -10,7 +10,9 @@ namespace AppTempo.Services
 {
     public class WeatherService
     {
-        private const string BaseUrl = "https://api.openweathermap.org/data/2.5/weather";
+        private const string BaseUrlweather = "https://api.openweathermap.org/data/2.5/weather";
+        private const string BaseUrlforecast = "https://api.openweathermap.org/data/2.5/forecast";
+        
         private const string ApiKey = "45420be0a60479b93d265e8ad3e7e908";
 
         private readonly HttpClient httpClient;
@@ -22,7 +24,7 @@ namespace AppTempo.Services
 
         public async Task<WeatherData> GetWeatherAsync(double latitude, double longitude)
         {
-            string url = $"{BaseUrl}?lat={latitude}&lon={longitude}&appid={ApiKey}&lang=pt_br";
+            string url = $"{BaseUrlweather}?lat={latitude}&lon={longitude}&units=metric&appid={ApiKey}&lang=pt_br";
 
             try
             {
