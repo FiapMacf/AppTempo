@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using Xamarin.Forms.Maps;
 
 namespace AppTempo.Services
 {
     public class GeolocationService
     {
-        public async Task<Tuple<double, double>> GetLocation()
+        public async Task<Position> GetLocation()
         {
             try
             {
@@ -18,7 +21,7 @@ namespace AppTempo.Services
                     double latitude = location.Latitude;
                     double longitude = location.Longitude;
 
-                    return Tuple.Create(latitude, longitude);
+                    return new Position(latitude, longitude);
                 }
             }
             catch (FeatureNotSupportedException)
@@ -38,7 +41,15 @@ namespace AppTempo.Services
                 // Unable to get location
             }
 
-            return Tuple.Create(0.0, 0.0);
+            return new Position(0.0, 0.0);
+        }
+
+        public async Task<string> GetCity(Position position)
+        {
+            Geocoder geoCoder = new Geocoder();
+
+            IEnumerable<string> possibleAddresses = await geoCoder.GetAddressesForPositionAsync(position);
+            return possibleAddresses.FirstOrDefault().Split(',').ElementAt(2);
         }
     }
 }

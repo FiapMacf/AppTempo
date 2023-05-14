@@ -23,10 +23,6 @@ namespace AppTempo
         {
             InitializeComponent();
 
-            string databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "appTempo.db");
-            var db = new DataBaseContext(databasePath);
-
-
             await NavigationService.NavigateAsync("NavigationPage/WeatherPage");
         }
 

@@ -14,7 +14,12 @@
                         VerticalOptions="FillAndExpand"
                         HorizontalOptions="EndAndExpand"
                         Aspect="AspectFill"/>
-            <Label Text="{Binding City.Name}"
+            <Label Text="{Binding Weather.City.Name}"
+                       FontSize="{OnPlatform Android=40, iOS=50}"
+                       Margin="20, 0, 0, 120"
+                       VerticalOptions="End"
+                       TextColor="White"/>
+            <Label Text="{Binding Weather.Weather[0].Description}"
                        FontSize="{OnPlatform Android=40, iOS=50}"
                        Margin="20, 0, 0, 120"
                        VerticalOptions="End"
@@ -79,9 +84,9 @@
                                 HeightRequest="80">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text= "{Binding City.DayWeek, StringFormat=' {0} -  '}" 
+                                <Span Text= "{Binding Weather.City.DayWeek, StringFormat=' {0} -  '}" 
                                             FontSize="Small"/>
-                                <Span Text="{Binding City.Day}"
+                                <Span Text="{Binding Weather.City.Day}"
                                             FontSize="Large"
                                             FontAttributes="Bold"/>
                             </FormattedString>
@@ -94,7 +99,7 @@
                                 x:Name="temperatureSection"
                                 Grid.Row="2"
                                 Spacing="0">
-                <Label Text="{Binding City.Temparute}"
+                <Label Text="{Binding Weather.Main.Temp}"
                             FontSize="65"
                             x:Name="temperatureTitle"
                             TextColor="White"/>
@@ -108,6 +113,7 @@
                             FontSize="65"/>
 
             </StackLayout>
+            
             <StackLayout Grid.ColumnSpan="2"
                                 Padding="50, 0"
                                 Grid.Row="2"
@@ -121,8 +127,8 @@
                             VerticalOptions="CenterAndExpand">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span FontFamily="{x:StaticResource MaterialFontFamily}"
-                                        Text="{x:Static utils:MaterialDesignIcons.WeatherSunsetUp}"
+                            <Span 
+                                        Text="{Binding Weather.Weather[0].Description}"
                                         TextColor="White"
                                         FontSize="Large"/>
                             <Span  Text="04:30"

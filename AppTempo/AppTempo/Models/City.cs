@@ -16,6 +16,10 @@ namespace AppTempo.Models
         public string Day { get; set; }
         public string DayWeek { get; set; }
         public string Icon { get; set; }
+        public int IdWeather { get; set; }
+
+        [Ignore]
         public Color IconColor { get; set; }
+       
     }
 }

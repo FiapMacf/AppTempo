@@ -42,7 +42,7 @@
             <StackLayout Orientation="Horizontal"
                             Margin="0, 20"
                             Spacing="0">
-                <FlexLayout BindableLayout.ItemsSource="{Binding WeatherSchedule}"
+                <FlexLayout BindableLayout.ItemsSource="{Binding WeatherData}"
                             Direction="Column"
                             HorizontalOptions="FillAndExpand"
                             Wrap="NoWrap">
