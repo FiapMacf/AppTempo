@@ -5,8 +5,6 @@ using Prism;
 using Prism.Ioc;
 using System;
 using System.IO;
-using Xamarin.Essentials.Implementation;
-using Xamarin.Essentials.Interfaces;
 using Xamarin.Forms;
 
 namespace AppTempo

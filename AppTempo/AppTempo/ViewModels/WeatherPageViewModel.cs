@@ -31,6 +31,7 @@ namespace AppTempo.ViewModels
             _repository = new Repository();
 
             WeatherData = new ObservableCollection<WeatherData>(_repository.ListWeatherData());
+
             Weather = WeatherData.Last();
             Task.Run(async () => await LoadWeatherDataAsync()).Wait();
 
@@ -64,17 +65,6 @@ namespace AppTempo.ViewModels
                 Weather.Sys.SunriseDate = Conversor.convertTimestampToDate(Weather.Sys.Sunrise);
                 Weather.Sys.SunsetDate = Conversor.convertTimestampToDate(Weather.Sys.Sunset);
             }
-            if (Weather.Main != null)
-            {
-                Weather.Main.Temp = Math.Round(Weather.Main.Temp, 0);
-                Weather.Main.TempMin = Math.Round(Weather.Main.TempMin, 0);
-                Weather.Main.TempMax = Math.Round(Weather.Main.TempMax, 0);
-            }
-            if (Weather.Weather.Any())
-            {
-                Weather.Weather.ForEach(x => x.Description = x.Description.First().ToString().ToUpper() + x.Description?.Substring(1).ToLower());
-            }
-           
             Weather.City = CityAdress;
             _repository.InsertWeatherData(Weather);
         }
