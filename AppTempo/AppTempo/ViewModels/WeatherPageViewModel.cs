@@ -28,12 +28,14 @@ namespace AppTempo.ViewModels
         CultureInfo cultureBR = new CultureInfo("pt-BR");
         public WeatherPageViewModel()
         {
+            Task.Run(async () => await LoadWeatherDataAsync()).Wait();
+
             _repository = new Repository();
 
             WeatherData = new ObservableCollection<WeatherData>(_repository.ListWeatherData());
 
             Weather = WeatherData.Last();
-            Task.Run(async () => await LoadWeatherDataAsync()).Wait();
+            
 
         }
 
