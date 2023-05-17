@@ -19,50 +19,35 @@ namespace AppTempo.ViewModels
 {
     public class WeatherPageViewModel : BindableBase
     {
-        public ObservableCollection<City> Cities { get; set; }
         public ObservableCollection<WeatherData> WeatherData { get; set; }
         public City City { get; set; }        
         public WeatherData Weather { get; set; }
         private Repository _repository { get; set; }
 
-        CultureInfo cultureBR = new CultureInfo("pt-BR");
+      
         public WeatherPageViewModel()
         {
             _repository = new Repository();
 
             WeatherData = new ObservableCollection<WeatherData>(_repository.ListWeatherData());
 
-            Weather = WeatherData.Last();
+            if(WeatherData.Any())
+                Weather = WeatherData.Last();
+
             Task.Run(async () => await LoadWeatherDataAsync()).Wait();
 
         }
 
         private async Task LoadWeatherDataAsync()
         {
-            DateTime date = DateTime.Now;
+            
             WeatherService weatherService = new WeatherService();
             GeolocationService geolocationService = new GeolocationService();
 
             Position location = await geolocationService.GetLocation();
 
-            var adress = await geolocationService.GetCity(location);
             Weather = await weatherService.GetWeatherAsync(location);
-            var CityAdress = new City
-            {
-                Name = adress,
-                Time = date.TimeOfDay.ToString(),
-                Icon = MaterialDesignIcons.WeatherPouring,
-                IconColor = Color.FromHex("#773ad8"),
-                Day = date.Day.ToString(),
-                DayWeek = cultureBR.DateTimeFormat.GetAbbreviatedDayName(date.DayOfWeek),
-
-            };
-            if (Weather.Sys != null)
-            {
-                Weather.Sys.SunriseDate = Conversor.convertTimestampToDate(Weather.Sys.Sunrise);
-                Weather.Sys.SunsetDate = Conversor.convertTimestampToDate(Weather.Sys.Sunset);
-            }
-            Weather.City = CityAdress;
+            Weather = await TransformarWeather.mapearDadosWeatherAsync(Weather);
             _repository.InsertWeatherData(Weather);
         }
     }

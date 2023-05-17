@@ -43,5 +43,26 @@ namespace AppTempo.Services
                 return null;
             }
         }
+
+        public async Task<List<WeatherData>> GetWeatherListAsync(Position position)
+        {
+            string url = $"{BaseUrlforecast}?lat={position.Latitude}&lon={position.Longitude}&units=metric&appid={ApiKey}&lang=pt_br";
+
+            try
+            {
+                HttpResponseMessage response = await httpClient.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+                List<WeatherData> weatherData = JsonConvert.DeserializeObject<List<WeatherData>>(responseContent);
+
+                return weatherData;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return null;
+            }
+        }
     }
 }

@@ -8,9 +8,8 @@ namespace AppTempo.Helper
     {
         public static string convertTimestampToDate(long timestamp)
         {
-            System.DateTime dat_Time = new System.DateTime(1965, 1, 1, 0, 0, 0, 0);
-            dat_Time = dat_Time.AddSeconds(timestamp);
-            return dat_Time.ToString("hh: mm tt");
+            DateTime dateTime = DateTimeOffset.FromUnixTimeSeconds(timestamp).DateTime;
+            return dateTime.ToString("hh:mm tt");
         }
     }
 }
