@@ -1,6 +1,7 @@
 ﻿using AppTempo.Database;
 using AppTempo.Helper;
 using AppTempo.Models;
+using AppTempo.Models.ForecastModels;
 using AppTempo.Services;
 using AppTempo.Utils;
 using Prism.Mvvm;
@@ -44,7 +45,12 @@ namespace AppTempo.ViewModels
             WeatherService weatherService = new WeatherService();
             GeolocationService geolocationService = new GeolocationService();
 
+            
+
             Position location = await geolocationService.GetLocation();
+
+            //todo utilizar
+            ForecastData forecastData = await weatherService.GetWeatherListAsync(location);
 
             Weather = await weatherService.GetWeatherAsync(location);
             Weather = await TransformarWeather.mapearDadosWeatherAsync(Weather);

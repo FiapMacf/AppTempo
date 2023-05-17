@@ -1,4 +1,5 @@
 ﻿using AppTempo.Models;
+using AppTempo.Models.ForecastModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace AppTempo.Services
             }
         }
 
-        public async Task<List<WeatherData>> GetWeatherListAsync(Position position)
+        public async Task<ForecastData> GetWeatherListAsync(Position position)
         {
             string url = $"{BaseUrlforecast}?lat={position.Latitude}&lon={position.Longitude}&units=metric&appid={ApiKey}&lang=pt_br";
 
@@ -54,9 +55,9 @@ namespace AppTempo.Services
                 response.EnsureSuccessStatusCode();
 
                 string responseContent = await response.Content.ReadAsStringAsync();
-                List<WeatherData> weatherData = JsonConvert.DeserializeObject<List<WeatherData>>(responseContent);
+                ForecastData forecastData = JsonConvert.DeserializeObject<ForecastData>(responseContent);
 
-                return weatherData;
+                return forecastData;
             }
             catch (Exception ex)
             {
