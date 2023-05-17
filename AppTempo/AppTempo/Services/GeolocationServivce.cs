@@ -13,8 +13,9 @@ namespace AppTempo.Services
         {
             try
             {
-                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
-                var location = await Geolocation.GetLocationAsync(request);
+                // var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                var location = await Geolocation.GetLastKnownLocationAsync();
+                //var location = await GetLastKnownLocationAsync();
 
                 if (location != null)
                 {

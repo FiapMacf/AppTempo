@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms.Maps;
 
 namespace AppTempo.Services
 {
@@ -22,9 +23,9 @@ namespace AppTempo.Services
             httpClient = new HttpClient();
         }
 
-        public async Task<WeatherData> GetWeatherAsync(double latitude, double longitude)
+        public async Task<WeatherData> GetWeatherAsync(Position position)
         {
-            string url = $"{BaseUrlweather}?lat={latitude}&lon={longitude}&units=metric&appid={ApiKey}&lang=pt_br";
+            string url = $"{BaseUrlweather}?lat={position.Latitude}&lon={position.Longitude}&units=metric&appid={ApiKey}&lang=pt_br";
 
             try
             {

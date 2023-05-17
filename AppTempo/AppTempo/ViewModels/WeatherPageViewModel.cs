@@ -45,11 +45,8 @@ namespace AppTempo.ViewModels
 
             Position location = await geolocationService.GetLocation();
 
-            double latitude = -22.9236;//location.Item1; // latitude value from the tuple
-            double longitude = -45.4598; //location.Item2; // longitude value from the tuple
-
-            var adress = await geolocationService.GetCity(new Position(latitude, longitude));
-            Weather = await weatherService.GetWeatherAsync(latitude, longitude);
+            var adress = await geolocationService.GetCity(location);
+            Weather = await weatherService.GetWeatherAsync(location);
             var CityAdress = new City
             {
                 Name = adress,
