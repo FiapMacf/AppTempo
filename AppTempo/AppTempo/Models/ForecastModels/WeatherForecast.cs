@@ -7,6 +7,7 @@ namespace AppTempo.Models.ForecastModels
     public class WeatherForecast
     {
         public long Dt { get; set; }
+        public string Data { get; set; }
         public MainWeatherData Main { get; set; }
         public List<Weather> Weather { get; set; }
         public Clouds Clouds { get; set; }

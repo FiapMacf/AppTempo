@@ -9,7 +9,7 @@ namespace AppTempo.Models.ForecastModels
         public string Cod { get; set; }
         public int Message { get; set; }
         public int Cnt { get; set; }
-        public List<WeatherForecast> List { get; set; }
+        public IEnumerable<WeatherForecast> List { get; set; }
         public City City { get; set; }
     }
 }

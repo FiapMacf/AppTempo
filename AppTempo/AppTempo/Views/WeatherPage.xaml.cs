@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppTempo.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -107,6 +108,11 @@ namespace AppTempo.Views
             parentAnimation.Commit(this, "parentAnimation", 22, 500);
 
             IsDetailSectionOpen = !IsDetailSectionOpen;
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            new WeatherPageViewModel();
         }
     }
 }

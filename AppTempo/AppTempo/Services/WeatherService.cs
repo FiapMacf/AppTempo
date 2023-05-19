@@ -1,4 +1,5 @@
-﻿using AppTempo.Models;
+﻿using AppTempo.Helper;
+using AppTempo.Models;
 using AppTempo.Models.ForecastModels;
 using Newtonsoft.Json;
 using System;
@@ -35,7 +36,7 @@ namespace AppTempo.Services
 
                 string responseContent = await response.Content.ReadAsStringAsync();
                 WeatherData weatherData = JsonConvert.DeserializeObject<WeatherData>(responseContent);
-
+                weatherData = await TransformarWeather.mapearDadosWeatherAsync(weatherData);
                 return weatherData;
             }
             catch (Exception ex)
@@ -56,7 +57,7 @@ namespace AppTempo.Services
 
                 string responseContent = await response.Content.ReadAsStringAsync();
                 ForecastData forecastData = JsonConvert.DeserializeObject<ForecastData>(responseContent);
-
+                forecastData = await TransformarWeather.mapearDadosWeatherForecastAsync(forecastData);
                 return forecastData;
             }
             catch (Exception ex)

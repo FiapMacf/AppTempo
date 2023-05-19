@@ -6,6 +6,8 @@ namespace AppTempo.Models.ForecastModels
 {
     public class MainWeatherData
     {
+        public string Description { get; set; }
+        public string Icon { get; set; }
         public double Temp { get; set; }
         public double FeelsLike { get; set; }
         public double TempMin { get; set; }

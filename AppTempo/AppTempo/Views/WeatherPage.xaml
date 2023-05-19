@@ -9,12 +9,12 @@
         <StackLayout BackgroundColor="{StaticResource primaryColor}"
                          AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
                          AbsoluteLayout.LayoutFlags="All">
-            <Image Source="woman_raining"
-                        Margin="0, 80, 0 ,0 "
+            <Image Source="{Binding imagemTempo}"
+                        Margin="20, 80, 0 ,0 "
                         VerticalOptions="FillAndExpand"
                         HorizontalOptions="EndAndExpand"
-                        Aspect="AspectFill"/>
-            <Label Text="{Binding Weather.City.Name}"
+                        Aspect="AspectFit"/>
+            <Label Text="{Binding Weather.Name}"
                        HorizontalTextAlignment="Center"
                        FontSize="{OnPlatform Android=30, iOS=30}"
                        VerticalOptions="End"
@@ -61,6 +61,7 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
+                
             </yummy:PancakeView>
             <yummy:PancakeView 
                         HeightRequest="160"
@@ -69,12 +70,13 @@
                         Grid.Column="1"
                         CornerRadius="0, 0, 40, 0">
                 <StackLayout Spacing="0">
-                    <Button Text="{x:Static utils:MaterialDesignIcons.FilterVariant}"
+                    <Button Text="{x:Static utils:MaterialDesignIcons.Update}"
                                 FontSize="Title"
                                 TextColor="White"
                                 FontFamily="{x:StaticResource MaterialFontFamily}"
                                 BackgroundColor="{StaticResource secondaryColor}"
                                 CornerRadius="0"
+                                Clicked="Button_Clicked"
                                 HeightRequest="80"/>
                     <Label TextColor="White"
                                 HorizontalOptions="FillAndExpand"
@@ -110,11 +112,11 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span 
-                                Text="{x:Static utils:MaterialDesignIcons.WeatherPouring}"
+                                Text="{Binding Weather.Main.Icon}"
                                 FontFamily="{StaticResource MaterialFontFamily}"
                                 x:Name="temperatureIcon"
                                 TextColor="White"
-                                FontSize="45"/>
+                                FontSize="50"/>
                             <Span 
                                 Text="{Binding Weather.Main.Temp}"
                                 FontSize="40"
@@ -128,10 +130,63 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-     
+
+                <StackLayout  >
+                    <yummy:PancakeView BackgroundColor="#f7f3ff"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="StartAndExpand"
+                                        HeightRequest="50"
+                                        WidthRequest="50"
+                                        CornerRadius="25">
+                        <Label Text="{x:Static utils:MaterialDesignIcons.WeatherSunsetUp}"
+                                FontFamily="{StaticResource MaterialFontFamily}"
+                                TextColor="{StaticResource primaryColor}"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                FontSize="Title" />
+                    </yummy:PancakeView>
+                    <Label Text="{Binding Weather.Sys.SunriseDate}"
+                            HorizontalOptions="StartAndExpand"
+                            VerticalOptions="CenterAndExpand"
+                           TextColor="White"/>
+
+                    <yummy:PancakeView BackgroundColor="#ffeef3"
+                                        VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="StartAndExpand"
+                                        HeightRequest="50"
+                                        WidthRequest="50"
+                                        CornerRadius="25">
+                        <Label Text="{x:Static utils:MaterialDesignIcons.WeatherSunsetDown}"
+                                FontFamily="{StaticResource MaterialFontFamily}"
+                                TextColor="{StaticResource secondaryColor}"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand"
+                                FontSize="Title" />
+                    </yummy:PancakeView>
+                    <Label Text="{Binding Weather.Sys.SunsetDate}"
+                           TextColor="White"
+                            VerticalOptions="CenterAndExpand"/>
+
+                    <yummy:PancakeView BackgroundColor="#f7f3ff"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="StartAndExpand"
+                                        HeightRequest="50"
+                                        WidthRequest="50"
+                                        CornerRadius="25">
+                        <Label Text="{x:Static utils:MaterialDesignIcons.Water}"
+                                FontFamily="{StaticResource MaterialFontFamily}"
+                                TextColor="{StaticResource primaryColor}"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                FontSize="Title" />
+                    </yummy:PancakeView>
+                    <Label Text="{Binding Weather.Main.Humidity , StringFormat='     {0}'}"
+                            HorizontalOptions="Start"
+                            VerticalOptions="CenterAndExpand"
+                           TextColor="White"/>
+                </StackLayout>
 
             </StackLayout>
-            
             <StackLayout Grid.ColumnSpan="2"
                                 Padding="50, 0"
                                 Grid.Row="2"
@@ -170,8 +225,11 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
+
             </StackLayout>
+                
         </Grid>
+        
         <StackLayout AbsoluteLayout.LayoutBounds="0, 1, 1, .80"
                          AbsoluteLayout.LayoutFlags="All">
             <AbsoluteLayout VerticalOptions="FillAndExpand"

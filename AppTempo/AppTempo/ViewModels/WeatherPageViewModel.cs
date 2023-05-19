@@ -20,8 +20,9 @@ namespace AppTempo.ViewModels
 {
     public class WeatherPageViewModel : BindableBase
     {
+        public ObservableCollection<WeatherForecast> WeatherForecast { get; set; }
         public ObservableCollection<WeatherData> WeatherData { get; set; }
-        public City City { get; set; }        
+        public string imagemTempo { get; set; }
         public WeatherData Weather { get; set; }
         private Repository _repository { get; set; }
 
@@ -29,14 +30,14 @@ namespace AppTempo.ViewModels
         public WeatherPageViewModel()
         {
             _repository = new Repository();
-
+           
             WeatherData = new ObservableCollection<WeatherData>(_repository.ListWeatherData());
 
             if(WeatherData.Any())
                 Weather = WeatherData.Last();
 
             Task.Run(async () => await LoadWeatherDataAsync()).Wait();
-
+            
         }
 
         private async Task LoadWeatherDataAsync()
@@ -45,16 +46,15 @@ namespace AppTempo.ViewModels
             WeatherService weatherService = new WeatherService();
             GeolocationService geolocationService = new GeolocationService();
 
-            
-
             Position location = await geolocationService.GetLocation();
 
-            //todo utilizar
-            ForecastData forecastData = await weatherService.GetWeatherListAsync(location);
-
+            ForecastData ForecastData = await weatherService.GetWeatherListAsync(location);
+            WeatherForecast = new ObservableCollection<WeatherForecast>(ForecastData.List);
             Weather = await weatherService.GetWeatherAsync(location);
-            Weather = await TransformarWeather.mapearDadosWeatherAsync(Weather);
+            
             _repository.InsertWeatherData(Weather);
+
+            imagemTempo = WeatherIconConverter.GetXamarinIconFromWeatherImage(Weather.Weather[0].Icon);
         }
     }
 }
